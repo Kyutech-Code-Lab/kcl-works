@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KCL Works
 
-## Getting Started
+### セットアップ
 
-First, run the development server:
+1. リポジトリをクローンする
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   ```bash
+   git clone git@github.com:Kyutech-Code-Lab/kcl-works.git
+   ```
+
+2. 依存関係をインストールする
+
+   ```bash
+   npm install
+   ```
+
+3. 開発サーバーを起動する
+
+   ```bash
+   npm run dev
+   ```
+
+4. ブラウザで `http://localhost:3000` を開く
+
+### 命名規則
+
+#### ブランチ名
+
+以下の形式でブランチ名を付ける
+
+```
+接頭辞/issue番号-機能・修正内容
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+例: feature/12-add-login, fix/34-bug-in-header
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### コミットメッセージ
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+以下の形式でコミットメッセージを付ける
 
-## Learn More
+```
+接頭辞: 機能・修正内容の簡潔な説明#issue番号
+```
 
-To learn more about Next.js, take a look at the following resources:
+例: feature: ユーザーログイン機能の追加 #12
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| 接頭辞   | 説明                     |
+| -------- | ------------------------ |
+| feature  | 新機能の追加             |
+| update   | 既存機能の更新           |
+| change   | 仕様変更                 |
+| fix      | バグ修正                 |
+| docs     | ドキュメントの変更       |
+| style    | コードのフォーマット変更 |
+| refactor | コードのリファクタリング |
+| test     | テストコードの追加・修正 |
+| chore    | その他の雑務             |
