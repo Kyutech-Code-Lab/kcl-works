@@ -1,14 +1,14 @@
-import { Card } from "@/components/ui/Card";
-import Image from "next/image";
 import styles from "./styles.module.css";
+import Image from "next/image";
+import { Card } from "@/components/ui/Card";
 
-interface EventCardProps {
+interface ProductCardProps {
   title: string;
-  date: string;
   thumbnailUrl: string;
+  tags: string[];
 }
 
-const EventCard = ({ title, date, thumbnailUrl }: EventCardProps) => {
+const ProductCard = ({ title, thumbnailUrl, tags }: ProductCardProps) => {
   return (
     <Card>
       <div className={styles.thumbnail}>
@@ -21,10 +21,16 @@ const EventCard = ({ title, date, thumbnailUrl }: EventCardProps) => {
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.date}>{date}</p>
+        <div className={styles.tags}>
+          {tags.map((tag) => (
+            <span key={tag} className={styles.tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </Card>
   );
 };
 
-export default EventCard;
+export default ProductCard;
