@@ -1,9 +1,9 @@
-import style from "./index.module.css";
+import styles from "./styles.module.css";
 
 export const Header: React.FC = () => {
   return (
-    <header className={style.header}>
-      <h1 className={style.logo}>KCL Works</h1>
+    <header className={styles.header}>
+      <h1 className={styles.logo}>KCL Works</h1>
     </header>
   );
 };
