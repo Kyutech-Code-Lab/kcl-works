@@ -17,6 +17,7 @@ const EventCard = ({ title, date, thumbnailUrl }: EventCardProps) => {
           alt={`${title} thumbnail`}
           width={300}
           height={200}
+          className={styles.image}
         />
       </div>
       <div className={styles.info}>
