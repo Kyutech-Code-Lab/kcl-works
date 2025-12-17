@@ -7,11 +7,20 @@
 }
 
 .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: calc(100% - 200px);
   padding: 16px;
 
   .title {
     font-size: 2.1rem;
     font-weight: bold;
-    margin-bottom: 8px;
+  }
+
+  .tags {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
   }
 }

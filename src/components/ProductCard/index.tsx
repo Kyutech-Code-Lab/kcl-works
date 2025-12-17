@@ -1,6 +1,7 @@
-import styles from "./styles.module.css";
+import Card from "@/components/ui/Card";
 import Image from "next/image";
-import { Card } from "@/components/ui/Card";
+import styles from "./styles.module.css";
+import Tag from "@/components/ui/Tag";
 
 interface ProductCardProps {
   title: string;
@@ -23,9 +24,7 @@ const ProductCard = ({ title, thumbnailUrl, tags }: ProductCardProps) => {
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.tags}>
           {tags.map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
       </div>
