@@ -1,5 +1,6 @@
 import EventCard from "@/components/EventCard";
 import ProductCard from "@/components/ProductCard";
+import Paper from "@/components/ui/Paper";
 
 export default function Home() {
   return (
@@ -16,6 +17,10 @@ export default function Home() {
         thumbnailUrl="/dummy.jpg"
         tags={["料理", "レシピ", "Gemini", "Next.js"]}
       />
+      <Paper>
+        <h2>About KCL Works</h2>
+        <p>KCL Works is a platform showcasing projects.</p>
+      </Paper>
     </>
   );
 }
