@@ -23,7 +23,7 @@ const ProductCard = ({ title, thumbnailUrl, tags }: ProductCardProps) => {
       <div className={styles.info}>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.tags}>
-          {tags.map((tag) => (
+          {tags?.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
         </div>

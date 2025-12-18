@@ -1,6 +1,32 @@
 import styles from "./page.module.css";
 import Hero from "@/components/ui/Hero";
 import Paper from "@/components/ui/Paper";
+import CardList from "@/components/CardList";
+import Card from "@/components/ui/Card";
+
+const dummyProducts = [
+  {
+    title: "製品A",
+    thumbnailUrl: "/dummy.jpg",
+    tags: ["タグ1", "タグ2"],
+  },
+  {
+    title: "製品B",
+    thumbnailUrl: "/dummy.jpg",
+    tags: ["タグ3", "タグ4"],
+  },
+  {
+    title: "製品C",
+    thumbnailUrl: "/dummy.jpg",
+    tags: ["タグ5", "タグ6"],
+  },
+  { title: "製品D", thumbnailUrl: "/dummy.jpg", tags: ["タグ7", "タグ8"] },
+  {
+    title: "製品E",
+    thumbnailUrl: "/dummy.jpg",
+    tags: ["タグ9", "タグ10"],
+  },
+];
 
 const EventDetailsPage = () => {
   return (
@@ -22,6 +48,7 @@ const EventDetailsPage = () => {
           公式ウェブサイトからオンラインで申し込みが可能です。定員に達し次第、締め切らせていただきますので、お早めにご登録ください。
         </p>
       </Paper>
+      <CardList contents={dummyProducts} isEvent={false} />
     </div>
   );
 };

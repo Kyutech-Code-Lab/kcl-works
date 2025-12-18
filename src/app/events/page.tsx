@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
-import EventCard from "@/components/EventCard";
 import PageTitle from "@/components/ui/PageTitle";
+import CardList from "@/components/CardList";
 
 const dummyEvents = [
   {
@@ -44,17 +44,10 @@ export default function EventsPage() {
   return (
     <div className={styles.container}>
       <PageTitle title="Events" />
-      <ul className={styles["event-list"]}>
-        {dummyEvents.map((event) => (
-          <li key={event.title}>
-            <EventCard
-              title={event.title}
-              date={event.date}
-              thumbnailUrl={event.thumbnailUrl}
-            />
-          </li>
-        ))}
-      </ul>
+      <CardList
+        contents={dummyEvents}
+        isEvent={true}
+      />
     </div>
   );
 }
