@@ -1,0 +1,9 @@
+.paper {
+  width: 90%;
+  max-width: 960px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 30px;
+}
