@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import EventCard from "@/components/EventCard";
+import PageTitle from "@/components/ui/PageTitle";
 
 const dummyEvents = [
   {
@@ -42,6 +43,7 @@ const dummyEvents = [
 export default function EventsPage() {
   return (
     <div className={styles.container}>
+      <PageTitle title="Events" />
       <ul className={styles["event-list"]}>
         {dummyEvents.map((event) => (
           <li key={event.title}>

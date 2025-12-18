@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import { BIZ_UDPGothic } from "next/font/google";
+import { BIZ_UDPGothic, Roboto_Slab } from "next/font/google";
 
 const bizUDPGothic = BIZ_UDPGothic({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-biz-ud-p-gothic",
+});
+
+const robotoSlab = Roboto_Slab({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-roboto-slab",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bizUDPGothic.variable}`}>
+      <body className={`${bizUDPGothic.variable} ${robotoSlab.variable}`}>
         <Header />
         {children}
       </body>
