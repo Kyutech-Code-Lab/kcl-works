@@ -7,11 +7,11 @@ interface CardListProps {
   isEvent: boolean;
 }
 
-const CardList = ({ contents }: CardListProps) => {
+const CardList = ({ contents, isEvent }: CardListProps) => {
   return (
     <ul className={styles["card-list"]}>
       {contents.map((content) =>
-        content.isEvent ? (
+        isEvent ? (
           <li key={content.title}>
             <EventCard
               title={content.title}
