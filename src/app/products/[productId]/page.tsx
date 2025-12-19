@@ -43,24 +43,28 @@ export default function ProductPage() {
         <Paper>
           <p>{dummyProduct.description}</p>
         </Paper>
-        <Paper>
-          <Link
-            href={dummyProduct.github_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub {dummyProduct.github_url}
-          </Link>
-        </Paper>
-        <Paper>
-          <Link
-            href={dummyProduct.site_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Site {dummyProduct.site_url}
-          </Link>
-        </Paper>
+        <div className={styles.links}>
+          <Paper>
+            GitHub
+            <Link
+              href={dummyProduct.github_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {dummyProduct.github_url}
+            </Link>
+          </Paper>
+          <Paper>
+            Site
+            <Link
+              href={dummyProduct.site_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {dummyProduct.site_url}
+            </Link>
+          </Paper>
+        </div>
       </div>
     </div>
   );
