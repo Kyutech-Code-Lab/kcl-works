@@ -1,7 +1,17 @@
-.tag {
+.genre {
   display: inline-block;
   background-color: var(--accent);
   color: white;
+  border-radius: 50px;
+  font-size: 1.6rem;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.creator {
+  display: inline-block;
+  background-color: var(--background);
+  color: black;
   border-radius: 50px;
   font-size: 1.6rem;
   padding: 6px 12px;
