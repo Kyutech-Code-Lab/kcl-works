@@ -24,14 +24,18 @@ export default function ProductPage() {
           <Paper>
             <div className={styles.tags}>
               {dummyProduct.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
+                <Tag key={tag} type="genre">
+                  {tag}
+                </Tag>
               ))}
             </div>
           </Paper>
           <Paper>
             <div className={styles.tags}>
               {dummyProduct.creators.map((creator) => (
-                <Tag key={creator}>{creator}</Tag>
+                <Tag key={creator} type="creator">
+                  {creator}
+                </Tag>
               ))}
             </div>
           </Paper>

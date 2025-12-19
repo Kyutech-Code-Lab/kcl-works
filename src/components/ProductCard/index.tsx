@@ -24,7 +24,9 @@ const ProductCard = ({ title, thumbnailUrl, tags }: ProductCardProps) => {
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.tags}>
           {tags?.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+            <Tag key={tag} type="genre">
+              {tag}
+            </Tag>
           ))}
         </div>
       </div>
