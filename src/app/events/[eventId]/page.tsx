@@ -1,11 +1,9 @@
 import CardList from "@/components/CardList";
+import MarkdownContent from "@/components/ui/MarkdownContent";
 import PageTitle from "@/components/ui/PageTitle";
 import Paper from "@/components/ui/Paper";
 import { getAllEventIds, getEvent, getProducts } from "@/lib/microcms";
 import { notFound } from "next/navigation";
-import ReactMarkDown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { parser } from "rich-editor-to-markdown-parser";
 import styles from "./page.module.css";
 
 // Propsの型を更新: params自体がPromiseであると仮定
@@ -44,9 +42,7 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
 
       <div className={styles.contents}>
         <Paper>
-          <ReactMarkDown remarkPlugins={[remarkGfm]}>
-            {parser(eventData.description)}
-          </ReactMarkDown>
+          <MarkdownContent content={eventData.description} />
         </Paper>
         <CardList contents={productData.contents} isEvent={false} />
       </div>
