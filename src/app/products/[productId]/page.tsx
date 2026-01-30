@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Hero from "@/components/ui/Hero";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import Paper from "@/components/ui/Paper";
@@ -31,6 +32,9 @@ export default async function ProductDetailsPage(
   }
   return (
     <div className={styles.container}>
+      <Breadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: productData.title }]}
+      />
       <Hero
         title={productData.title}
         imageUrl={productData.thumbnail?.url || "/dummy.jpg"} // サムネイル画像
