@@ -4,16 +4,17 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 
 interface EventCardProps {
+  id: string; // idを追加
   title: string;
   date: string;
   thumbnailUrl: string;
 }
 
-const EventCard = ({ title, date, thumbnailUrl }: EventCardProps) => {
-  console.log("EventCard props:", { title, date, thumbnailUrl });
+const EventCard = ({ id, title, date, thumbnailUrl }: EventCardProps) => {
   return (
     <Card>
-      <Link href={`/events/${title}`}>
+      {/* Linkをidを使うように修正 */}
+      <Link href={`/events/${id}`}>
         <div className={styles.thumbnail}>
           <Image
             src={thumbnailUrl}

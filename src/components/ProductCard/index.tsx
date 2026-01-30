@@ -5,15 +5,16 @@ import Tag from "@/components/ui/Tag";
 import Link from "next/link";
 
 interface ProductCardProps {
+  id: string; // idを追加
   title: string;
   thumbnailUrl: string;
   tags: string[];
 }
 
-const ProductCard = ({ title, thumbnailUrl, tags }: ProductCardProps) => {
+const ProductCard = ({ id, title, thumbnailUrl, tags }: ProductCardProps) => {
   return (
     <Card>
-      <Link href={`/products/${title}`}>
+      <Link href={`/products/${id}`}>
         <div className={styles.thumbnail}>
           <Image
             src={thumbnailUrl}

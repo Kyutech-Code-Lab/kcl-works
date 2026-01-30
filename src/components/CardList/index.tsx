@@ -1,34 +1,48 @@
 import styles from "./styles.module.css";
 import EventCard from "@/components/EventCard";
 import ProductCard from "@/components/ProductCard";
+import type { Event, Product } from "@/lib/microcms";
 
-interface CardListProps {
-  contents: any[];
-  isEvent: boolean;
+interface EventCardListProps {
+  contents: Event[];
+  isEvent: true;
 }
+
+interface ProductCardListProps {
+  contents: Product[];
+  isEvent: false;
+}
+
+type CardListProps = EventCardListProps | ProductCardListProps;
 
 const CardList = ({ contents, isEvent }: CardListProps) => {
   return (
     <ul className={styles["card-list"]}>
-      {contents.map((content) =>
-        isEvent ? (
-          <li key={content.title}>
-            <EventCard
-              title={content.title}
-              date={content.date}
-              thumbnailUrl={content.thumbnailUrl}
-            />
-          </li>
-        ) : (
-          <li key={content.title}>
-            <ProductCard
-              title={content.title}
-              thumbnailUrl={content.thumbnailUrl}
-              tags={content.tags}
-            />
-          </li>
-        )
-      )}
+      {isEvent
+        ? contents.map((event) => (
+            <li key={event.id}>
+              <EventCard
+                id={event.id}
+                title={event.title}
+                date={event.date}
+                thumbnailUrl={event.thumbnail?.url || "/dummy.jpg"}
+              />
+            </li>
+          ))
+        : contents.map((product) => (
+            <li key={product.id}>
+              <ProductCard
+                id={product.id}
+                title={product.title}
+                thumbnailUrl={product.thumbnail?.url || "/dummy.jpg"}
+                tags={
+                  product.tags?.map((tag) => tag.name).filter(Boolean) as
+                    | string[]
+                    | []
+                }
+              />
+            </li>
+          ))}
     </ul>
   );
 };
