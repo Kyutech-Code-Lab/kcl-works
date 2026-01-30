@@ -1,11 +1,12 @@
+import Image from "next/image";
+import type { HTMLAttributes, ImgHTMLAttributes } from "react";
+import type { ExtraProps } from "react-markdown";
 import ReactMarkDown from "react-markdown";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import remarkGfm from "remark-gfm";
 import { parser } from "rich-editor-to-markdown-parser";
 import styles from "./styles.module.css";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import type { HTMLAttributes } from "react";
-import type { ExtraProps } from "react-markdown";
 
 type MarkdownContentProps = {
   content: string;
@@ -32,6 +33,21 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
               <code className={className} {...props}>
                 {children}
               </code>
+            );
+          },
+          img(props: ImgHTMLAttributes<HTMLImageElement> & ExtraProps) {
+            const { src, alt, width, height, ...rest } = props;
+            // 空のsrcは描画しない
+            if (!src || typeof src !== "string") {
+              return null;
+            }
+            return (
+              <Image
+                src={src}
+                alt={alt || ""}
+                width={typeof width === "number" ? width : 800}
+                height={typeof height === "number" ? height : 600}
+              />
             );
           },
         }}
