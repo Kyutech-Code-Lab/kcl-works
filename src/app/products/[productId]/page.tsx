@@ -1,9 +1,12 @@
-import { getAllProductIds, getProduct } from "@/lib/microcms";
 import Hero from "@/components/ui/Hero";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
+import { getAllProductIds, getProduct } from "@/lib/microcms";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkDown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { parser } from "rich-editor-to-markdown-parser";
 import styles from "./page.module.css";
 
 type ProductDetailsPageProps = {
@@ -62,7 +65,11 @@ export default async function ProductDetailsPage(
             </Paper>
           )}
         </div>
-        <Paper>{productData.description}</Paper>
+        <Paper>
+          <ReactMarkDown remarkPlugins={[remarkGfm]}>
+            {parser(productData.description)}
+          </ReactMarkDown>
+        </Paper>
         <div className={styles.links}>
           {productData.github_url && (
             <Paper>
