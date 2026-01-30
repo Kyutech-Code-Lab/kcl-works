@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import PageTitle from "@/components/ui/PageTitle";
 import CardList from "@/components/CardList";
-import { getEvents } from "@/components/lib/microcms";
+import { getEvents } from "@/lib/microcms";
 
 export const revalidate = 60;
 

@@ -3,7 +3,7 @@ import {
   getAllEventIds,
   getEvent,
   getProducts,
-} from "@/components/lib/microcms";
+} from "@/lib/microcms";
 import Paper from "@/components/ui/Paper";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";

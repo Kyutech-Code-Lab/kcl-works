@@ -1,4 +1,4 @@
-import { getAllProductIds, getProduct } from "@/components/lib/microcms";
+import { getAllProductIds, getProduct } from "@/lib/microcms";
 import Hero from "@/components/ui/Hero";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
