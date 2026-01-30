@@ -1,10 +1,12 @@
-import styles from "./page.module.css";
-import Paper from "@/components/ui/Paper";
 import CardList from "@/components/CardList";
+import {
+  getAllEventIds,
+  getEvent,
+  getProducts,
+} from "@/components/lib/microcms";
+import Paper from "@/components/ui/Paper";
 import { notFound } from "next/navigation";
-import { getEvent, getAllEventIds, getProducts } from "@/components/lib/microcms";
-import type { Event } from "@/components/lib/microcms";
-
+import styles from "./page.module.css";
 
 // Propsの型を更新: params自体がPromiseであると仮定
 type EventDetailsPageProps = {
@@ -39,14 +41,10 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
 
   return (
     <div className={styles.container}>
-      {/* eventDataから直接titleなどを取得 */}
       <h1 className={styles.title}>{eventData.title}</h1>
 
       <div className={styles.content}>
-        <Paper>
-          {/* microCMSのHTMLコンテンツを表示。contentがnull/undefinedの場合に備えて空文字列をフォールバック */}
-          <div dangerouslySetInnerHTML={{ __html: eventData.content || '' }} />
-        </Paper>
+        <Paper>{eventData.description}</Paper>
       </div>
 
       <h2>関連商品</h2>

@@ -1,11 +1,10 @@
-import styles from "./page.module.css";
+import { getAllProductIds, getProduct } from "@/components/lib/microcms";
 import Hero from "@/components/ui/Hero";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProduct, getAllProductIds } from "@/components/lib/microcms";
-import type { Product } from "@/components/lib/microcms";
+import styles from "./page.module.css";
 
 type ProductDetailsPageProps = {
   params: Promise<{ productId: string }>;
@@ -20,7 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProductDetailsPage(props: ProductDetailsPageProps) {
+export default async function ProductDetailsPage(
+  props: ProductDetailsPageProps,
+) {
   const params = await props.params;
   const productData = await getProduct(params.productId); // getProductでデータ取得
   if (!productData) {
@@ -55,9 +56,7 @@ export default async function ProductDetailsPage(props: ProductDetailsPageProps)
             </Paper>
           )}
         </div>
-        <Paper>
-          <div dangerouslySetInnerHTML={{ __html: productData.description || '' }} />
-        </Paper>
+        <Paper>{productData.description}</Paper>
         <div className={styles.links}>
           {productData.github_url && (
             <Paper>

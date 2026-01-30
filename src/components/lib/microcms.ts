@@ -7,7 +7,7 @@ export interface Tag extends MicroCMSListContent {
 
 export interface Event extends MicroCMSListContent {
   title: string;
-  content: string; // ページで必要なので追加
+  description: string; // ページで必要なので追加
   date: string;
   thumbnail?: MicroCMSImage;
 }
