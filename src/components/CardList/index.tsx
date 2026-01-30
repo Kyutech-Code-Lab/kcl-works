@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import EventCard from "@/components/EventCard";
 import ProductCard from "@/components/ProductCard";
 import type { Event, Product } from "@/lib/microcms";
+import dateFormatter from "@/lib/dateFormater";
 
 interface EventCardListProps {
   contents: Event[];
@@ -16,6 +17,7 @@ interface ProductCardListProps {
 type CardListProps = EventCardListProps | ProductCardListProps;
 
 const CardList = ({ contents, isEvent }: CardListProps) => {
+  console.log(contents);
   return (
     <ul className={styles["card-list"]}>
       {isEvent
@@ -24,7 +26,7 @@ const CardList = ({ contents, isEvent }: CardListProps) => {
               <EventCard
                 id={event.id}
                 title={event.title}
-                date={event.date}
+                date={dateFormatter(event.date)}
                 thumbnailUrl={event.thumbnail?.url || "/dummy.jpg"}
               />
             </li>
