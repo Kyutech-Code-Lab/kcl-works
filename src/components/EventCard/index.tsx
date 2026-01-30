@@ -1,7 +1,7 @@
 import Card from "@/components/ui/Card";
 import Image from "next/image";
-import styles from "./styles.module.css";
 import Link from "next/link";
+import styles from "./styles.module.css";
 
 interface EventCardProps {
   id: string; // idを追加
@@ -13,7 +13,6 @@ interface EventCardProps {
 const EventCard = ({ id, title, date, thumbnailUrl }: EventCardProps) => {
   return (
     <Card>
-      {/* Linkをidを使うように修正 */}
       <Link href={`/events/${id}`}>
         <div className={styles.thumbnail}>
           <Image

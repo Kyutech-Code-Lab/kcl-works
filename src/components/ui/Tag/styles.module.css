@@ -1,7 +1,7 @@
 .genre {
   display: inline-block;
   background-color: var(--accent);
-  color: white;
+  color: black;
   border-radius: 50px;
   font-size: 1.6rem;
   padding: 6px 12px;

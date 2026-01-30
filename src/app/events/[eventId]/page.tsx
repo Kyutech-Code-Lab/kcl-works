@@ -1,12 +1,9 @@
 import CardList from "@/components/CardList";
-import {
-  getAllEventIds,
-  getEvent,
-  getProducts,
-} from "@/lib/microcms";
+import { getAllEventIds, getEvent, getProducts } from "@/lib/microcms";
 import Paper from "@/components/ui/Paper";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
+import PageTitle from "@/components/ui/PageTitle";
 
 // Propsの型を更新: params自体がPromiseであると仮定
 type EventDetailsPageProps = {
@@ -36,19 +33,16 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
     notFound();
   }
 
-  // 関連商品をいくつか取得
-  const productData = await getProducts({ limit: 4 });
+  const productData = await getProducts();
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{eventData.title}</h1>
+      <PageTitle title={eventData.title} />
 
-      <div className={styles.content}>
+      <div className={styles.contents}>
         <Paper>{eventData.description}</Paper>
+        <CardList contents={productData.contents} isEvent={false} />
       </div>
-
-      <h2>関連商品</h2>
-      <CardList contents={productData.contents} isEvent={false} />
     </div>
   );
 }
