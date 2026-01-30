@@ -9,12 +9,26 @@ interface ProductCardProps {
   title: string;
   thumbnailUrl: string;
   tags: string[];
+  eventId?: string;
+  eventTitle?: string;
 }
 
-const ProductCard = ({ id, title, thumbnailUrl, tags }: ProductCardProps) => {
+const ProductCard = ({
+  id,
+  title,
+  thumbnailUrl,
+  tags,
+  eventId,
+  eventTitle,
+}: ProductCardProps) => {
+  const href =
+    eventId && eventTitle
+      ? `/products/${id}?eventId=${eventId}&eventTitle=${encodeURIComponent(eventTitle)}`
+      : `/products/${id}`;
+
   return (
     <Card>
-      <Link href={`/products/${id}`}>
+      <Link href={href}>
         <div className={styles.thumbnail}>
           <Image
             src={thumbnailUrl}

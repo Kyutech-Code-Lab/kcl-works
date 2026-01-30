@@ -10,6 +10,7 @@ import styles from "./page.module.css";
 
 type ProductDetailsPageProps = {
   params: Promise<{ productId: string }>;
+  searchParams: Promise<{ eventId?: string; eventTitle?: string }>;
 };
 
 export const revalidate = 60; // ページデータの再検証間隔
@@ -25,20 +26,31 @@ export default async function ProductDetailsPage(
   props: ProductDetailsPageProps,
 ) {
   const params = await props.params;
+  const searchParams = await props.searchParams;
   const productData = await getProduct(params.productId); // getProductでデータ取得
   console.log("Product Data:", productData);
   if (!productData) {
     notFound();
   }
+
+  // パンくずリストの生成
+  const breadcrumbItems = [{ label: "Home", href: "/" }];
+  if (searchParams.eventId && searchParams.eventTitle) {
+    breadcrumbItems.push({ label: "Events", href: "/events" });
+    breadcrumbItems.push({
+      label: searchParams.eventTitle,
+      href: `/events/${searchParams.eventId}`,
+    });
+  }
+  breadcrumbItems.push({ label: productData.title, href: "" });
+
   return (
     <div className={styles.container}>
-      <Breadcrumbs
-        items={[{ label: "Home", href: "/" }, { label: productData.title }]}
-      />
       <Hero
         title={productData.title}
         imageUrl={productData.thumbnail?.url || "/dummy.jpg"} // サムネイル画像
       />
+      <Breadcrumbs items={breadcrumbItems} />
       <div className={styles.content}>
         <div className={styles["tag-section"]}>
           {productData.tags && productData.tags.length > 0 && (

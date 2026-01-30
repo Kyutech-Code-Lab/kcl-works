@@ -53,7 +53,12 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
           <MarkdownContent content={eventData.description} />
         </Paper>
       </div>
-      <CardList contents={productData.contents} isEvent={false} />
+      <CardList
+        contents={productData.contents}
+        isEvent={false}
+        eventId={params.eventId}
+        eventTitle={eventData.title}
+      />
     </div>
   );
 }
