@@ -1,0 +1,205 @@
+.markdown {
+  /* 基本的なタイポグラフィ */
+  line-height: 1.8;
+  color: #333;
+}
+
+/* 見出し */
+.markdown h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1.5em 0 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #eee;
+}
+
+.markdown h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1.3em 0 0.5em;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 1.2em 0 0.5em;
+}
+
+.markdown h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.markdown h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.markdown h6 {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+  color: #666;
+}
+
+/* 段落 */
+.markdown p {
+  margin: 1em 0;
+}
+
+/* リスト */
+.markdown ul,
+.markdown ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.markdown ul {
+  list-style-type: disc;
+}
+
+.markdown ol {
+  list-style-type: decimal;
+}
+
+.markdown li {
+  margin: 0.5em 0;
+}
+
+.markdown li > p {
+  margin: 0.5em 0;
+}
+
+/* ネストされたリスト */
+.markdown ul ul,
+.markdown ol ul {
+  list-style-type: circle;
+}
+
+.markdown ul ul ul,
+.markdown ol ul ul {
+  list-style-type: square;
+}
+
+/* コードブロック */
+.markdown pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.markdown code {
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9em;
+}
+
+.markdown pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* 引用 */
+.markdown blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid #ddd;
+  background-color: #f9f9f9;
+  color: #666;
+}
+
+.markdown blockquote p {
+  margin: 0.5em 0;
+}
+
+/* リンク */
+.markdown a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+/* 水平線 */
+.markdown hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 2em 0;
+}
+
+/* テーブル */
+.markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  overflow-x: auto;
+  display: block;
+}
+
+.markdown thead {
+  background-color: #f6f8fa;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid #ddd;
+  padding: 0.6em 1em;
+  text-align: left;
+}
+
+.markdown th {
+  font-weight: bold;
+}
+
+.markdown tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* 画像 */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* 強調 */
+.markdown strong {
+  font-weight: bold;
+}
+
+.markdown em {
+  font-style: italic;
+}
+
+/* 削除線 */
+.markdown del {
+  text-decoration: line-through;
+  color: #666;
+}
+
+/* チェックボックス (GFM) */
+.markdown input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+/* 最初の要素の上マージンをリセット */
+.markdown > *:first-child {
+  margin-top: 0;
+}
+
+/* 最後の要素の下マージンをリセット */
+.markdown > *:last-child {
+  margin-bottom: 0;
+}
