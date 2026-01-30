@@ -12,11 +12,13 @@ interface EventCardListProps {
 interface ProductCardListProps {
   contents: Product[];
   isEvent: false;
+  eventId?: string;
+  eventTitle?: string;
 }
 
 type CardListProps = EventCardListProps | ProductCardListProps;
 
-const CardList = ({ contents, isEvent }: CardListProps) => {
+const CardList = ({ contents, isEvent, ...props }: CardListProps) => {
   console.log(contents);
   return (
     <ul className={styles["card-list"]}>
@@ -41,6 +43,10 @@ const CardList = ({ contents, isEvent }: CardListProps) => {
                   product.tags?.map((tag) => tag.name).filter(Boolean) as
                     | string[]
                     | []
+                }
+                eventId={"eventId" in props ? props.eventId : undefined}
+                eventTitle={
+                  "eventTitle" in props ? props.eventTitle : undefined
                 }
               />
             </li>

@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
 import CardList from "@/components/CardList";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import PageTitle from "@/components/ui/PageTitle";
@@ -38,14 +39,26 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
 
   return (
     <div className={styles.container}>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Events", href: "/events" },
+          { label: eventData.title },
+        ]}
+      />
       <PageTitle title={eventData.title} />
 
       <div className={styles.contents}>
         <Paper>
           <MarkdownContent content={eventData.description} />
         </Paper>
-        <CardList contents={productData.contents} isEvent={false} />
       </div>
+      <CardList
+        contents={productData.contents}
+        isEvent={false}
+        eventId={params.eventId}
+        eventTitle={eventData.title}
+      />
     </div>
   );
 }
