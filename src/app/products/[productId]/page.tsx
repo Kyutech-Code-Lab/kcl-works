@@ -24,6 +24,7 @@ export default async function ProductDetailsPage(
 ) {
   const params = await props.params;
   const productData = await getProduct(params.productId); // getProductでデータ取得
+  console.log("Product Data:", productData);
   if (!productData) {
     notFound();
   }
@@ -49,9 +50,14 @@ export default async function ProductDetailsPage(
           {productData.creators && (
             <Paper>
               <div className={styles.tags}>
-                <Tag key={productData.creators} type="creator">
-                  {productData.creators}
-                </Tag>
+                {productData.creators
+                  .split(/[\n、,\s]+/)
+                  .filter((creator) => creator.trim())
+                  .map((creator) => (
+                    <Tag key={creator} type="creator">
+                      {creator.trim()}
+                    </Tag>
+                  ))}
               </div>
             </Paper>
           )}
@@ -60,7 +66,7 @@ export default async function ProductDetailsPage(
         <div className={styles.links}>
           {productData.github_url && (
             <Paper>
-              GitHub:{" "}
+              GitHub
               <Link
                 href={productData.github_url}
                 target="_blank"
@@ -72,7 +78,7 @@ export default async function ProductDetailsPage(
           )}
           {productData.site_url && (
             <Paper>
-              Site:{" "}
+              Site
               <Link
                 href={productData.site_url}
                 target="_blank"
