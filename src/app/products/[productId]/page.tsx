@@ -28,7 +28,6 @@ export default async function ProductDetailsPage(
   const params = await props.params;
   const searchParams = await props.searchParams;
   const productData = await getProduct(params.productId); // getProductでデータ取得
-  console.log("Product Data:", productData);
   if (!productData) {
     notFound();
   }

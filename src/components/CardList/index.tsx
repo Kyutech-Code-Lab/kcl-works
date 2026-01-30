@@ -19,7 +19,6 @@ interface ProductCardListProps {
 type CardListProps = EventCardListProps | ProductCardListProps;
 
 const CardList = ({ contents, isEvent, ...props }: CardListProps) => {
-  console.log(contents);
   return (
     <ul className={styles["card-list"]}>
       {isEvent
