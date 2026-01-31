@@ -3,7 +3,7 @@ import Link from "next/link";
 import Logo from "../../../public/logo_ver2.png";
 import styles from "./styles.module.css";
 
-export const Header: React.FC = () => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <Link href="/events">
@@ -12,3 +12,5 @@ export const Header: React.FC = () => {
     </header>
   );
 };
+
+export default Header;
