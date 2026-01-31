@@ -1,6 +1,6 @@
 :root {
-  --primary: #8BCFF9;
-  --accent: #FFDF58;
+  --primary: #8bcff9;
+  --accent: #ffdf58;
   --background: #d4ecfa;
   --foreground: #000000;
 }
@@ -14,7 +14,6 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
   font-family: var(--font-biz-ud-p-gothic), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,6 +21,42 @@ body {
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
   min-height: 100vh;
+
+  background:
+    radial-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 4px),
+    radial-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 4px),
+    linear-gradient(var(--background) 4px, transparent 0),
+    linear-gradient(
+      45deg,
+      transparent 74px,
+      transparent 75px,
+      rgba(165, 165, 165, 0.25) 75px,
+      rgba(165, 165, 165, 0.25) 76px,
+      transparent 77px,
+      transparent 109px
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 75px,
+      transparent 76px,
+      rgba(165, 165, 165, 0.25) 76px,
+      rgba(165, 165, 165, 0.25) 77px,
+      transparent 78px,
+      transparent 109px
+    ),
+    var(--background);
+  background-size:
+    109px 109px,
+    109px 109px,
+    100% 6px,
+    109px 109px,
+    109px 109px;
+  background-position:
+    54px 55px,
+    0px 0px,
+    0px 0px,
+    0px 0px,
+    0px 0px;
 }
 
 * {
