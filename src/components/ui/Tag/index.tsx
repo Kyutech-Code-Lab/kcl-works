@@ -7,7 +7,9 @@ interface TagProps {
 
 const Tag = ({ children, type }: TagProps) => {
   return (
-    <span className={type === "genre" ? styles.genre : styles.creator}>
+    <span
+      className={`${styles.tag} ${type === "genre" ? styles.genre : styles.creator}`}
+    >
       {children}
     </span>
   );

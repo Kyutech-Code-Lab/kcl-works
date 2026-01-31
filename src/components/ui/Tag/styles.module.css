@@ -1,19 +1,25 @@
-.genre {
+.tag {
   display: inline-block;
-  background-color: var(--accent);
   color: black;
   border-radius: 50px;
   font-size: 1.6rem;
-  padding: 6px 12px;
+  font-weight: bold;
+  padding: 8px 16px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.genre {
+  background-color: var(--accent);
 }
 
 .creator {
-  display: inline-block;
   background-color: var(--background);
-  color: black;
-  border-radius: 50px;
-  font-size: 1.6rem;
-  padding: 6px 12px;
-  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .tag {
+    font-size: 1.4rem;
+  }
 }
