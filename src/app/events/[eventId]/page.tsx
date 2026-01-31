@@ -35,7 +35,9 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
     notFound();
   }
 
-  const productData = await getProducts();
+  const productData = await getProducts({
+    filters: `event[contains]${params.eventId}`,
+  });
 
   return (
     <div className={styles.container}>
