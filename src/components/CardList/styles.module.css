@@ -6,3 +6,15 @@
     max-width: calc(300px * 3 + 30px * 2);
     list-style: none;
   }
+
+  @media (max-width: 1199px) {
+    .card-list {
+      width: calc(300px * 2 + 30px);
+    }
+  }
+
+  @media (max-width: 787px) {
+    .card-list {
+      width: 300px;
+    }
+  }
