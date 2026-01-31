@@ -30,15 +30,26 @@
       font-size: 1.6rem;
       font-weight: 700;
 
+      div {
+        display: flex;
+      }
+
       a {
+        display: inline-block;
         font-weight: 400;
         color: #0070f3;
         text-decoration: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
         padding-left: 2rem;
 
         &:hover {
           text-decoration: underline;
         }
+      }
+
+      @media (max-width: 600px) {
+        font-size: 1.4rem;
       }
     }
   }
