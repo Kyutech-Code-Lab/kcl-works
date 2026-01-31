@@ -4,3 +4,17 @@
   color: #333;
   margin: 40px;
 }
+
+@media (max-width: 899px) {
+  .title {
+    font-size: 3.2rem;
+    margin: 30px;
+  }
+}
+
+@media (max-width: 599px) {
+  .title {
+    font-size: 2.4rem;
+    margin: 20px;
+  }
+}

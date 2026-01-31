@@ -84,7 +84,7 @@ export default async function ProductDetailsPage(
         <div className={styles.links}>
           {productData.github_url && (
             <Paper>
-              GitHub
+              <span>GitHub</span>
               <Link
                 href={productData.github_url}
                 target="_blank"
@@ -96,7 +96,7 @@ export default async function ProductDetailsPage(
           )}
           {productData.site_url && (
             <Paper>
-              Site
+              <span>Site</span>
               <Link
                 href={productData.site_url}
                 target="_blank"
