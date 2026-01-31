@@ -2,45 +2,46 @@
   /* 基本的なタイポグラフィ */
   line-height: 1.8;
   color: #333;
+  font-size: 1rem;
 }
 
 /* 見出し */
 .markdown h1 {
-  font-size: 2em;
+  font-size: 2.4em;
   font-weight: bold;
   margin: 1.5em 0 0.5em;
   padding-bottom: 0.3em;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid var(--primary);
 }
 
 .markdown h2 {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   margin: 1.3em 0 0.5em;
   padding-bottom: 0.2em;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--primary);
 }
 
 .markdown h3 {
-  font-size: 1.25em;
+  font-size: 1.6em;
   font-weight: bold;
   margin: 1.2em 0 0.5em;
 }
 
 .markdown h4 {
-  font-size: 1.1em;
+  font-size: 1.25em;
   font-weight: bold;
   margin: 1em 0 0.5em;
 }
 
 .markdown h5 {
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: bold;
   margin: 1em 0 0.5em;
 }
 
 .markdown h6 {
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: bold;
   margin: 1em 0 0.5em;
   color: #666;
@@ -99,7 +100,7 @@
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: "Courier New", Courier, monospace;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .markdown pre code {
@@ -112,8 +113,8 @@
 .markdown blockquote {
   margin: 1em 0;
   padding: 0.5em 1em;
-  border-left: 4px solid #ddd;
-  background-color: #f9f9f9;
+  border-left: 4px solid var(--primary);
+  background-color: var(--background);
   color: #666;
 }
 
@@ -123,7 +124,7 @@
 
 /* リンク */
 .markdown a {
-  color: #0366d6;
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -134,7 +135,7 @@
 /* 水平線 */
 .markdown hr {
   border: none;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--primary);
   margin: 2em 0;
 }
 
@@ -148,12 +149,12 @@
 }
 
 .markdown thead {
-  background-color: #f6f8fa;
+  background-color: var(--background);
 }
 
 .markdown th,
 .markdown td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--primary);
   padding: 0.6em 1em;
   text-align: left;
 }
