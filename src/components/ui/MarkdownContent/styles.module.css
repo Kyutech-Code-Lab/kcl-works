@@ -15,7 +15,7 @@
 }
 
 .markdown h2 {
-  font-size: 2em;
+  font-size: 2.2em;
   font-weight: bold;
   margin: 1.3em 0 0.5em;
   padding-bottom: 0.2em;
@@ -23,32 +23,26 @@
 }
 
 .markdown h3 {
-  font-size: 1.6em;
+  font-size: 2.1em;
   font-weight: bold;
   margin: 1.2em 0 0.5em;
 }
 
 .markdown h4 {
-  font-size: 1.25em;
+  font-size: 1.9em;
   font-weight: bold;
   margin: 1em 0 0.5em;
 }
 
 .markdown h5 {
-  font-size: 1.1em;
+  font-size: 1.7em;
   font-weight: bold;
   margin: 1em 0 0.5em;
-}
-
-.markdown h6 {
-  font-size: 1em;
-  font-weight: bold;
-  margin: 1em 0 0.5em;
-  color: #666;
 }
 
 /* 段落 */
 .markdown p {
+  font-size: 1.6em;
   margin: 1em 0;
 }
 
@@ -89,7 +83,6 @@
 /* コードブロック */
 .markdown pre {
   background-color: #f6f8fa;
-  border-radius: 6px;
   padding: 1em;
   overflow-x: auto;
   margin: 1em 0;
@@ -98,15 +91,18 @@
 .markdown code {
   background-color: #f6f8fa;
   padding: 0.2em 0.4em;
-  border-radius: 3px;
   font-family: "Courier New", Courier, monospace;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .markdown pre code {
   background-color: transparent;
   padding: 0;
-  border-radius: 0;
+  border-radius: 4px;
+}
+
+.markdown pre > code:first-child {
+  padding: 1em !important;
 }
 
 /* 引用 */
