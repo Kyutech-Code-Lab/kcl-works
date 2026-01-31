@@ -2,6 +2,7 @@
   width: 80%;
   max-width: 960px;
   padding-top: 1.6rem;
+  padding-left: 1rem;
 }
 
 .list {
@@ -12,7 +13,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .item {
