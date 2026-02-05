@@ -10,7 +10,6 @@ export default async function ProductsPage() {
   const data = await getProducts();
   return (
     <div className={styles.container}>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Works" }]} />
       <PageTitle title="Works" />
       <CardList contents={data.contents} isEvent={false} />
     </div>

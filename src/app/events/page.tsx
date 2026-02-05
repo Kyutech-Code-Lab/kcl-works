@@ -10,9 +10,6 @@ export default async function EventsPage() {
   const data = await getEvents();
   return (
     <div className={styles.container}>
-      <Breadcrumbs
-        items={[{ label: "Home", href: "/" }, { label: "Events" }]}
-      />
       <PageTitle title="Events" />
       <CardList contents={data.contents} isEvent={true} />
     </div>

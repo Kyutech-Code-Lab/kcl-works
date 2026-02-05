@@ -33,15 +33,17 @@ export default async function ProductDetailsPage(
   }
 
   // パンくずリストの生成
-  const breadcrumbItems = [{ label: "Home", href: "/" }];
+  const breadcrumbItems = [] as { label: string; href?: string }[];
   if (searchParams.eventId && searchParams.eventTitle) {
     breadcrumbItems.push({ label: "Events", href: "/events" });
     breadcrumbItems.push({
       label: searchParams.eventTitle,
       href: `/events/${searchParams.eventId}`,
     });
+  } else {
+    breadcrumbItems.push({ label: "Works", href: "/products" });
   }
-  breadcrumbItems.push({ label: productData.title, href: "" });
+  breadcrumbItems.push({ label: productData.title });
 
   return (
     <div className={styles.container}>
