@@ -3,7 +3,7 @@ import CardList from "@/components/CardList";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import PageTitle from "@/components/ui/PageTitle";
 import Paper from "@/components/ui/Paper";
-import { getAllEventIds, getEvent, getProducts } from "@/lib/microcms";
+import { getAllEventIds, getEvent, getWorks } from "@/lib/microcms";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
@@ -35,7 +35,7 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
     notFound();
   }
 
-  const productData = await getProducts({
+  const workData = await getWorks({
     filters: `event[contains]${params.eventId}`,
   });
 
@@ -43,7 +43,6 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
     <div className={styles.container}>
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
           { label: "Events", href: "/events" },
           { label: eventData.title },
         ]}
@@ -56,7 +55,7 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
         </Paper>
       </div>
       <CardList
-        contents={productData.contents}
+        contents={workData.contents}
         isEvent={false}
         eventId={params.eventId}
         eventTitle={eventData.title}

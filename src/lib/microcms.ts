@@ -1,5 +1,9 @@
 import { createClient } from "microcms-js-sdk";
-import type { MicroCMSImage, MicroCMSListContent, MicroCMSQueries } from "microcms-js-sdk";
+import type {
+  MicroCMSImage,
+  MicroCMSListContent,
+  MicroCMSQueries,
+} from "microcms-js-sdk";
 
 export interface Tag extends MicroCMSListContent {
   name: string;
@@ -12,7 +16,7 @@ export interface Event extends MicroCMSListContent {
   thumbnail?: MicroCMSImage;
 }
 
-export interface Product extends MicroCMSListContent {
+export interface Work extends MicroCMSListContent {
   title: string;
   creators: string;
   description: string;
@@ -42,7 +46,10 @@ export const getEvents = async (queries?: MicroCMSQueries) => {
   });
 };
 
-export const getEvent = async (contentId: string, queries?: MicroCMSQueries) => {
+export const getEvent = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+) => {
   return client.get<Event>({
     endpoint: "events",
     contentId,
@@ -50,22 +57,24 @@ export const getEvent = async (contentId: string, queries?: MicroCMSQueries) => 
   });
 };
 
-export const getProducts = async (queries?: MicroCMSQueries) => {
-  return client.getList<Product>({
-    endpoint: "products",
+export const getWorks = async (queries?: MicroCMSQueries) => {
+  return client.getList<Work>({
+    endpoint: "works",
     queries,
   });
 };
 
-export const getProduct = async (contentId: string, queries?: MicroCMSQueries) => {
-  return client.get<Product>({
-    endpoint: "products",
+export const getWork = async (contentId: string, queries?: MicroCMSQueries) => {
+  return client.get<Work>({
+    endpoint: "works",
     contentId,
     queries,
   });
 };
 
-export const getAllEventIds = async (queries?: Omit<MicroCMSQueries, 'limit' | 'offset'>) => {
+export const getAllEventIds = async (
+  queries?: Omit<MicroCMSQueries, "limit" | "offset">,
+) => {
   let allContentIds: { id: string }[] = [];
   let offset = 0;
   const limit = 100; // microCMSの最大取得件数
@@ -76,7 +85,10 @@ export const getAllEventIds = async (queries?: Omit<MicroCMSQueries, 'limit' | '
       queries: { ...queries, fields: "id", limit, offset },
     });
 
-    allContentIds = [...allContentIds, ...data.contents.map(c => ({ id: c.id }))];
+    allContentIds = [
+      ...allContentIds,
+      ...data.contents.map((c) => ({ id: c.id })),
+    ];
 
     // 最大100件取得し終わったらループを抜ける
     if (allContentIds.length >= data.totalCount) {
@@ -87,18 +99,23 @@ export const getAllEventIds = async (queries?: Omit<MicroCMSQueries, 'limit' | '
   return allContentIds;
 };
 
-export const getAllProductIds = async (queries?: Omit<MicroCMSQueries, 'limit' | 'offset'>) => {
+export const getAllWorkIds = async (
+  queries?: Omit<MicroCMSQueries, "limit" | "offset">,
+) => {
   let allContentIds: { id: string }[] = [];
   let offset = 0;
   const limit = 100; // microCMSの最大取得件数
 
   while (true) {
-    const data = await client.getList<Product>({
-      endpoint: "products",
+    const data = await client.getList<Work>({
+      endpoint: "works",
       queries: { ...queries, fields: "id", limit, offset },
     });
 
-    allContentIds = [...allContentIds, ...data.contents.map(c => ({ id: c.id }))];
+    allContentIds = [
+      ...allContentIds,
+      ...data.contents.map((c) => ({ id: c.id })),
+    ];
 
     if (allContentIds.length >= data.totalCount) {
       break;

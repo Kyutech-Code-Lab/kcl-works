@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import EventCard from "@/components/EventCard";
-import ProductCard from "@/components/ProductCard";
-import type { Event, Product } from "@/lib/microcms";
+import WorkCard from "@/components/WorkCard";
+import type { Event, Work } from "@/lib/microcms";
 import dateFormatter from "@/lib/dateFormater";
 
 interface EventCardListProps {
@@ -9,14 +9,14 @@ interface EventCardListProps {
   isEvent: true;
 }
 
-interface ProductCardListProps {
-  contents: Product[];
+interface WorkCardListProps {
+  contents: Work[];
   isEvent: false;
   eventId?: string;
   eventTitle?: string;
 }
 
-type CardListProps = EventCardListProps | ProductCardListProps;
+type CardListProps = EventCardListProps | WorkCardListProps;
 
 const CardList = ({ contents, isEvent, ...props }: CardListProps) => {
   return (
@@ -32,14 +32,14 @@ const CardList = ({ contents, isEvent, ...props }: CardListProps) => {
               />
             </li>
           ))
-        : contents.map((product) => (
-            <li key={product.id}>
-              <ProductCard
-                id={product.id}
-                title={product.title}
-                thumbnailUrl={product.thumbnail?.url || "/dummy.jpg"}
+        : contents.map((work) => (
+            <li key={work.id}>
+              <WorkCard
+                id={work.id}
+                title={work.title}
+                thumbnailUrl={work.thumbnail?.url || "/dummy.jpg"}
                 tags={
-                  product.tags?.map((tag) => tag.name).filter(Boolean) as
+                  work.tags?.map((tag) => tag.name).filter(Boolean) as
                     | string[]
                     | []
                 }

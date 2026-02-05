@@ -3,59 +3,59 @@ import Hero from "@/components/ui/Hero";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
-import { getAllProductIds, getProduct } from "@/lib/microcms";
+import { getAllWorkIds, getWork } from "@/lib/microcms";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
-type ProductDetailsPageProps = {
-  params: Promise<{ productId: string }>;
+type WorkDetailsPageProps = {
+  params: Promise<{ workId: string }>;
   searchParams: Promise<{ eventId?: string; eventTitle?: string }>;
 };
 
 export const revalidate = 60; // ページデータの再検証間隔
 
 export async function generateStaticParams() {
-  const allProductIds = await getAllProductIds(); // getAllProductIdsを使用
-  return allProductIds.map((content) => ({
-    productId: content.id,
+  const allWorkIds = await getAllWorkIds(); // getAllWorkIdsを使用
+  return allWorkIds.map((content) => ({
+    workId: content.id,
   }));
 }
 
-export default async function ProductDetailsPage(
-  props: ProductDetailsPageProps,
-) {
+export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
   const params = await props.params;
   const searchParams = await props.searchParams;
-  const productData = await getProduct(params.productId); // getProductでデータ取得
-  if (!productData) {
+  const workData = await getWork(params.workId); // getWorkでデータ取得
+  if (!workData) {
     notFound();
   }
 
   // パンくずリストの生成
-  const breadcrumbItems = [{ label: "Home", href: "/" }];
+  const breadcrumbItems = [] as { label: string; href?: string }[];
   if (searchParams.eventId && searchParams.eventTitle) {
     breadcrumbItems.push({ label: "Events", href: "/events" });
     breadcrumbItems.push({
       label: searchParams.eventTitle,
       href: `/events/${searchParams.eventId}`,
     });
+  } else {
+    breadcrumbItems.push({ label: "Works", href: "/works" });
   }
-  breadcrumbItems.push({ label: productData.title, href: "" });
+  breadcrumbItems.push({ label: workData.title });
 
   return (
     <div className={styles.container}>
       <Hero
-        title={productData.title}
-        imageUrl={productData.thumbnail?.url || "/dummy.jpg"} // サムネイル画像
+        title={workData.title}
+        imageUrl={workData.thumbnail?.url || "/dummy.jpg"} // サムネイル画像
       />
       <Breadcrumbs items={breadcrumbItems} />
       <div className={styles.content}>
         <div className={styles["tag-section"]}>
-          {productData.tags && productData.tags.length > 0 && (
+          {workData.tags && workData.tags.length > 0 && (
             <Paper>
               <div className={styles.tags}>
-                {productData.tags.map((tag) => (
+                {workData.tags.map((tag) => (
                   <Tag key={tag.id} type="genre">
                     {tag.name}
                   </Tag>
@@ -63,10 +63,10 @@ export default async function ProductDetailsPage(
               </div>
             </Paper>
           )}
-          {productData.creators && (
+          {workData.creators && (
             <Paper>
               <div className={styles.tags}>
-                {productData.creators
+                {workData.creators
                   .split(/[\n、,\s]+/)
                   .filter((creator) => creator.trim())
                   .map((creator) => (
@@ -79,30 +79,30 @@ export default async function ProductDetailsPage(
           )}
         </div>
         <Paper>
-          <MarkdownContent content={productData.description} />
+          <MarkdownContent content={workData.description} />
         </Paper>
         <div className={styles.links}>
-          {productData.github_url && (
+          {workData.github_url && (
             <Paper>
               <span>GitHub</span>
               <Link
-                href={productData.github_url}
+                href={workData.github_url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {productData.github_url}
+                {workData.github_url}
               </Link>
             </Paper>
           )}
-          {productData.site_url && (
+          {workData.site_url && (
             <Paper>
               <span>Site</span>
               <Link
-                href={productData.site_url}
+                href={workData.site_url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {productData.site_url}
+                {workData.site_url}
               </Link>
             </Paper>
           )}
