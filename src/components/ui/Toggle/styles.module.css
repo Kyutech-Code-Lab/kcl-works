@@ -1,12 +1,21 @@
+.toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: scale 0.2s ease;
+}
+
 .toggleContainer {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
-  position: relative;
   padding: 8px;
   background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
   --ease-duration: 0.8s;
   --ease-elastic-out: linear(
     0,
@@ -123,7 +132,7 @@
   width: anchor-size(width);
   height: anchor-size(height);
   background: var(--primary);
-  border-radius: 16px;
+  border-radius: 18px;
   transition: var(--ease-duration) var(--ease-elastic-out);
   pointer-events: none;
   z-index: 0;
@@ -131,29 +140,16 @@
 
 .label {
   z-index: 1;
-  padding: 8px 16px;
+  padding: 10px 16px;
   background: none;
   border: none;
   font-size: 1.6rem;
   font-weight: 700;
   color: white;
   transition: color 0.3s ease;
-  cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   text-align: center;
-}
-
-.label:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.label:active {
-  scale: 0.97;
-}
-
-.label.active {
-  color: #fff;
 }
 
 @media (max-width: 640px) {
@@ -163,21 +159,7 @@
   }
 
   .label {
-    font-size: 12px;
-    min-width: 40px;
-  }
-
-  .slider {
-    width: 40px;
-    height: 24px;
-  }
-
-  .toggle {
-    padding: 6px;
-  }
-
-  .label {
-    font-size: 12px;
+    font-size: 1.2px;
     padding: 6px 12px;
   }
 }

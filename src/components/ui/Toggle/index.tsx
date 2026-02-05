@@ -13,41 +13,38 @@ const Toggle = ({ onToggle }: ToggleProps) => {
 
   const isWorks = pathname.startsWith("/works");
 
-  const handleToggle = (target: "events" | "works") => {
-    if ((target === "works") === isWorks) return;
-
-    const newPath = target === "works" ? "/works" : "/events";
+  const handleToggle = () => {
+    const newPath = isWorks ? "/events" : "/works";
     router.push(newPath);
-    onToggle?.(target === "works");
+    onToggle?.(!isWorks);
   };
 
   return (
-    <div
-      className={styles.toggleContainer}
+    <button
+      type="button"
+      className={styles.toggle}
+      onClick={handleToggle}
+      aria-label={isWorks ? "イベント一覧に切り替え" : "作品一覧に切り替え"}
       style={{
         // @ts-ignore
         "--active-anchor": isWorks ? "--toggle-works" : "--toggle-events",
       }}
     >
-      <button
-        type="button"
-        className={`${styles.label} ${!isWorks ? styles.active : ""}`}
-        onClick={() => handleToggle("events")}
-        style={{ anchorName: "--toggle-events" } as React.CSSProperties}
-        aria-label="イベント一覧に切り替え"
-      >
-        イベント
-      </button>
-      <button
-        type="button"
-        className={`${styles.label} ${isWorks ? styles.active : ""}`}
-        onClick={() => handleToggle("works")}
-        style={{ anchorName: "--toggle-works" } as React.CSSProperties}
-        aria-label="作品一覧に切り替え"
-      >
-        作品
-      </button>
-    </div>
+      <div className={styles.toggleContainer}>
+        <span
+          className={styles.label}
+          style={{ anchorName: "--toggle-events" } as React.CSSProperties}
+        >
+          イベント
+        </span>
+        <span
+          className={styles.label}
+          style={{ anchorName: "--toggle-works" } as React.CSSProperties}
+        >
+          作品
+        </span>
+      </div>
+    </button>
   );
 };
 
