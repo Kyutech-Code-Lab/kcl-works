@@ -1,4 +1,3 @@
-import Breadcrumbs from "@/components/Breadcrumbs";
 import CardList from "@/components/CardList";
 import PageTitle from "@/components/ui/PageTitle";
 import { getWorks } from "@/lib/microcms";
