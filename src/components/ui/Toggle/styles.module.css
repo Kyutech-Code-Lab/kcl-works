@@ -1,0 +1,165 @@
+.toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: scale 0.2s ease;
+}
+
+.toggleContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 24px;
+  --ease-duration: 0.8s;
+  --ease-elastic-out: linear(
+    0,
+    0.1116,
+    0.216,
+    0.313,
+    0.4026,
+    0.485,
+    0.5602,
+    0.6286,
+    0.6904,
+    0.746,
+    0.7955,
+    0.8396,
+    0.8783,
+    0.9123,
+    0.9418,
+    0.9672,
+    0.9888,
+    1.0071,
+    1.0222,
+    1.0346,
+    1.0446,
+    1.0524,
+    1.0582,
+    1.0624,
+    1.0651,
+    1.0666,
+    1.067,
+    1.0665,
+    1.0653,
+    1.0635,
+    1.0611,
+    1.0584,
+    1.0555,
+    1.0523,
+    1.049,
+    1.0456,
+    1.0422,
+    1.0389,
+    1.0356,
+    1.0324,
+    1.0293,
+    1.0264,
+    1.0236,
+    1.021,
+    1.0186,
+    1.0163,
+    1.0142,
+    1.0122,
+    1.0105,
+    1.0089,
+    1.0074,
+    1.0061,
+    1.0049,
+    1.0039,
+    1.003,
+    1.0022,
+    1.0015,
+    1.0009,
+    1.0003,
+    0.9999,
+    0.9995,
+    0.9992,
+    0.999,
+    0.9988,
+    0.9987,
+    0.9986,
+    0.9985,
+    0.9985,
+    0.9984,
+    0.9985,
+    0.9985,
+    0.9985,
+    0.9986,
+    0.9986,
+    0.9987,
+    0.9988,
+    0.9989,
+    0.9989,
+    0.999,
+    0.9991,
+    0.9992,
+    0.9992,
+    0.9993,
+    0.9994,
+    0.9994,
+    0.9995,
+    0.9996,
+    0.9996,
+    0.9997,
+    0.9997,
+    0.9998,
+    0.9998,
+    0.9998,
+    0.9999,
+    0.9999,
+    0.9999,
+    0.9999,
+    0.9999,
+    1,
+    1,
+    1
+  );
+}
+
+.toggleContainer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  position-anchor: var(--active-anchor);
+  top: anchor(top);
+  left: anchor(left);
+  width: anchor-size(width);
+  height: anchor-size(height);
+  background: var(--primary);
+  border-radius: 18px;
+  transition: var(--ease-duration) var(--ease-elastic-out);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.label {
+  z-index: 1;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  transition: color 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .toggleContainer {
+    gap: 6px;
+    padding: 3px;
+  }
+
+  .label {
+    font-size: 1.2px;
+    padding: 6px 12px;
+  }
+}
