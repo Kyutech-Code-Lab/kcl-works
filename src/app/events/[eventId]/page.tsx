@@ -43,7 +43,6 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
     <div className={styles.container}>
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
           { label: "Events", href: "/events" },
           { label: eventData.title },
         ]}
