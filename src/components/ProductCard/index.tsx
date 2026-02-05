@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import Tag from "@/components/ui/Tag";
 import Link from "next/link";
 
-interface ProductCardProps {
+interface WorkCardProps {
   id: string; // idを追加
   title: string;
   thumbnailUrl: string;
@@ -13,18 +13,18 @@ interface ProductCardProps {
   eventTitle?: string;
 }
 
-const ProductCard = ({
+const WorkCard = ({
   id,
   title,
   thumbnailUrl,
   tags,
   eventId,
   eventTitle,
-}: ProductCardProps) => {
+}: WorkCardProps) => {
   const href =
     eventId && eventTitle
-      ? `/products/${id}?eventId=${eventId}&eventTitle=${encodeURIComponent(eventTitle)}`
-      : `/products/${id}`;
+      ? `/works/${id}?eventId=${eventId}&eventTitle=${encodeURIComponent(eventTitle)}`
+      : `/works/${id}`;
 
   return (
     <Card>
@@ -52,4 +52,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default WorkCard;
