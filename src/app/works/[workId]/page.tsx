@@ -78,6 +78,20 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
             </Paper>
           )}
         </div>
+        {workData.details && workData.details.length > 0 && (
+          <div className={styles.details}>
+            {workData.details.map((detail, index) => (
+              <Paper key={`${detail.title?.[0] ?? "detail"}-${index}`}>
+                <div className={styles["detail-item"]}>
+                  <span className={styles["detail-title"]}>
+                    {detail.title?.[0] ?? ""}
+                  </span>
+                  <p className={styles["detail-content"]}>{detail.content}</p>
+                </div>
+              </Paper>
+            ))}
+          </div>
+        )}
         <Paper>
           <MarkdownContent content={workData.description} />
         </Paper>
