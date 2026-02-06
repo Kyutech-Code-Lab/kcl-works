@@ -9,6 +9,12 @@ export interface Tag extends MicroCMSListContent {
   name: string;
 }
 
+export interface WorkDetail extends MicroCMSListContent {
+  fieldId: "workDetail";
+  title: string[];
+  content: string;
+}
+
 export interface Event extends MicroCMSListContent {
   title: string;
   description: string; // ページで必要なので追加
@@ -20,6 +26,7 @@ export interface Work extends MicroCMSListContent {
   title: string;
   creators: string;
   description: string;
+  details: WorkDetail[];
   thumbnail?: MicroCMSImage;
   site_url?: string;
   github_url?: string;
