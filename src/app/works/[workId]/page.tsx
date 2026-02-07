@@ -4,6 +4,7 @@ import MarkdownContent from "@/components/ui/MarkdownContent";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
 import { getAllWorkIds, getWork } from "@/lib/microcms";
+import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
@@ -41,6 +42,10 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
       ? searchParams.draftKey
       : undefined;
 
+  if (draftKey) {
+    noStore();
+  }
+
   let workData: Awaited<ReturnType<typeof getWork>> | undefined;
 
   try {
@@ -49,7 +54,7 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
       draftKey ? { draftKey } : undefined,
     );
   } catch {
-    if (searchParams.draftKey) {
+    if (draftKey) {
       return (
         <div className={styles["not-draft-key"]}>
           ドラフトキーが無効です。正しいキーを使用してください。
@@ -60,7 +65,7 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
   }
 
   if (!workData) {
-    if (searchParams.draftKey) {
+    if (draftKey) {
       return (
         <div className={styles.container}>
           ドラフトキーが無効です。正しいキーを使用してください。
