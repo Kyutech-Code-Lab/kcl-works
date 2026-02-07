@@ -4,6 +4,7 @@ import MarkdownContent from "@/components/ui/MarkdownContent";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
 import { getAllWorkIds, getWork } from "@/lib/microcms";
+import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
@@ -35,14 +36,25 @@ export async function generateStaticParams() {
 export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
   const params = await props.params;
   const searchParams = await props.searchParams;
+
+  const draftKey =
+    typeof searchParams.draftKey === "string"
+      ? searchParams.draftKey
+      : undefined;
+
+  if (draftKey) {
+    noStore();
+  }
+
   let workData: Awaited<ReturnType<typeof getWork>> | undefined;
 
   try {
-    workData = await getWork(params.workId, {
-      draftKey: searchParams.draftKey,
-    });
+    workData = await getWork(
+      params.workId,
+      draftKey ? { draftKey } : undefined,
+    );
   } catch {
-    if (searchParams.draftKey) {
+    if (draftKey) {
       return (
         <div className={styles["not-draft-key"]}>
           ドラフトキーが無効です。正しいキーを使用してください。
@@ -53,7 +65,7 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
   }
 
   if (!workData) {
-    if (searchParams.draftKey) {
+    if (draftKey) {
       return (
         <div className={styles.container}>
           ドラフトキーが無効です。正しいキーを使用してください。
@@ -83,6 +95,7 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
         imageUrl={workData.thumbnail?.url || "/dummy.jpg"} // サムネイル画像
       />
       <Breadcrumbs items={breadcrumbItems} />
+      {draftKey && <div>これは下書きです。</div>}
       <div className={styles.content}>
         <div className={styles["tag-section"]}>
           {workData.tags && workData.tags.length > 0 && (
