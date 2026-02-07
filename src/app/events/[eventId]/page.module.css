@@ -16,3 +16,8 @@
     margin-bottom: 4rem;
   }
 }
+
+.not-draft-key {
+  padding: 2rem;
+  text-align: center;
+}

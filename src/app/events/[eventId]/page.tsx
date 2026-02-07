@@ -4,12 +4,13 @@ import MarkdownContent from "@/components/ui/MarkdownContent";
 import PageTitle from "@/components/ui/PageTitle";
 import Paper from "@/components/ui/Paper";
 import { getAllEventIds, getEvent, getWorks } from "@/lib/microcms";
+import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
-// Propsの型を更新: params自体がPromiseであると仮定
 type EventDetailsPageProps = {
   params: Promise<{ eventId: string }>;
+  searchParams: Promise<{ draftKey?: string }>;
 };
 
 export const revalidate = 60;
@@ -27,11 +28,44 @@ export async function generateStaticParams() {
 export default async function EventDetailsPage(props: EventDetailsPageProps) {
   // paramsオブジェクト自体をawaitで解決
   const params = await props.params;
+  const searchParams = await props.searchParams;
 
-  const eventData = await getEvent(params.eventId);
+  const draftKey =
+    typeof searchParams.draftKey === "string"
+      ? searchParams.draftKey
+      : undefined;
+
+  if (draftKey) {
+    noStore();
+  }
+
+  let eventData: Awaited<ReturnType<typeof getEvent>> | undefined;
+
+  try {
+    eventData = await getEvent(
+      params.eventId,
+      draftKey ? { draftKey } : undefined,
+    );
+  } catch {
+    if (draftKey) {
+      return (
+        <div className={styles["not-draft-key"]}>
+          ドラフトキーが無効です。正しいキーを使用してください。
+        </div>
+      );
+    }
+    notFound();
+  }
 
   // データがなければ404
   if (!eventData) {
+    if (draftKey) {
+      return (
+        <div className={styles["not-draft-key"]}>
+          ドラフトキーが無効です。正しいキーを使用してください。
+        </div>
+      );
+    }
     notFound();
   }
 
@@ -47,6 +81,7 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
           { label: eventData.title },
         ]}
       />
+      {draftKey && <div>これは下書きです。</div>}
       <PageTitle title={eventData.title} />
 
       <div className={styles.contents}>
