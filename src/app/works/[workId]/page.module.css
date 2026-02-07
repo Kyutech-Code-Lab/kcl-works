@@ -52,5 +52,41 @@
         font-size: 1.4rem;
       }
     }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6rem;
+
+      @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .detail-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .detail-content {
+      font-size: 1.4rem;
+      line-height: 1.7;
+      margin: 0;
+    }
   }
+}
+
+.not-draft-key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  font-size: 1.6rem;
+  font-weight: 600;;
 }
