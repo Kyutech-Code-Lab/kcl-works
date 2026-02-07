@@ -35,12 +35,19 @@ export async function generateStaticParams() {
 export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
   const params = await props.params;
   const searchParams = await props.searchParams;
+
+  const draftKey =
+    typeof searchParams.draftKey === "string"
+      ? searchParams.draftKey
+      : undefined;
+
   let workData: Awaited<ReturnType<typeof getWork>> | undefined;
 
   try {
-    workData = await getWork(params.workId, {
-      draftKey: searchParams.draftKey,
-    });
+    workData = await getWork(
+      params.workId,
+      draftKey ? { draftKey } : undefined,
+    );
   } catch {
     if (searchParams.draftKey) {
       return (
@@ -83,6 +90,7 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
         imageUrl={workData.thumbnail?.url || "/dummy.jpg"} // サムネイル画像
       />
       <Breadcrumbs items={breadcrumbItems} />
+      {draftKey && <div>これは下書きです。</div>}
       <div className={styles.content}>
         <div className={styles["tag-section"]}>
           {workData.tags && workData.tags.length > 0 && (
