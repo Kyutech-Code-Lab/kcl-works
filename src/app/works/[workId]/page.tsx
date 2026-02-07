@@ -8,10 +8,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
-type WorkDetailsPageProps = {
-  params: Promise<{ workId: string }>;
-  searchParams: Promise<{ eventId?: string; eventTitle?: string }>;
-};
+interface WorkDetailsParams {
+  workId: string;
+}
+
+interface WorkDetailsSearchParams {
+  eventId?: string;
+  eventTitle?: string;
+  draftKey?: string;
+}
+
+interface WorkDetailsPageProps {
+  params: Promise<WorkDetailsParams>;
+  searchParams: Promise<WorkDetailsSearchParams>;
+}
 
 export const revalidate = 60; // ページデータの再検証間隔
 
@@ -25,8 +35,31 @@ export async function generateStaticParams() {
 export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
   const params = await props.params;
   const searchParams = await props.searchParams;
-  const workData = await getWork(params.workId); // getWorkでデータ取得
+  let workData: Awaited<ReturnType<typeof getWork>> | undefined;
+
+  try {
+    workData = await getWork(params.workId, {
+      draftKey: searchParams.draftKey,
+    });
+  } catch {
+    if (searchParams.draftKey) {
+      return (
+        <div className={styles["not-draft-key"]}>
+          ドラフトキーが無効です。正しいキーを使用してください。
+        </div>
+      );
+    }
+    notFound();
+  }
+
   if (!workData) {
+    if (searchParams.draftKey) {
+      return (
+        <div className={styles.container}>
+          ドラフトキーが無効です。正しいキーを使用してください。
+        </div>
+      );
+    }
     notFound();
   }
 
