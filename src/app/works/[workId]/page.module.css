@@ -81,3 +81,12 @@
     }
   }
 }
+
+.not-draft-key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  font-size: 1.6rem;
+  font-weight: 600;;
+}
