@@ -22,9 +22,15 @@ export interface Event extends MicroCMSListContent {
   thumbnail?: MicroCMSImage;
 }
 
+export interface Award extends MicroCMSListContent {
+  title: string;
+  event: Event;
+}
+
 export interface Work extends MicroCMSListContent {
   title: string;
   creators: string;
+  awards?: Award[];
   description: string;
   details: WorkDetail[];
   thumbnail?: MicroCMSImage;
