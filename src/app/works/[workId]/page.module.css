@@ -23,6 +23,19 @@
       }
     }
 
+    .awards-label {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .awards {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 1.6rem;
+    }
+
     .links {
       display: flex;
       flex-direction: column;
@@ -88,5 +101,5 @@
   align-items: center;
   height: calc(100vh - 200px);
   font-size: 1.6rem;
-  font-weight: 600;;
+  font-weight: 600;
 }

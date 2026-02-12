@@ -8,6 +8,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
+import awardFormatter from "@/lib/awardsFormatter";
 
 interface WorkDetailsParams {
   workId: string;
@@ -124,6 +125,20 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
             </Paper>
           )}
         </div>
+        {workData.awards && workData.awards.length > 0 && (
+          <Paper>
+            <p className={styles["awards-label"]}>受賞</p>
+            <div className={styles.awards}>
+              {awardFormatter(workData.awards).map((award) => (
+                <div key={award.awardTitle} className={styles.award}>
+                  <span>・ {award.eventTitle}</span>
+                  <span>- {award.awardTitle}</span>
+                </div>
+              ))}
+            </div>
+          </Paper>
+        )}
+
         {workData.details && workData.details.length > 0 && (
           <div className={styles.details}>
             {workData.details.map((detail, index) => (
