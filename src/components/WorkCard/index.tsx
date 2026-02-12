@@ -30,12 +30,16 @@ const WorkCard = ({
       ? `/works/${id}?eventId=${eventId}&eventTitle=${encodeURIComponent(eventTitle)}`
       : `/works/${id}`;
 
+  const displayAwards = eventId
+    ? awards?.filter((a) => a.eventId === eventId)
+    : awards;
+
   return (
     <Card>
       <Link href={href} className={styles.link}>
-        {awards && (
+        {displayAwards && displayAwards.length > 0 && (
           <div className={styles.badges}>
-            {awards.map((award) => (
+            {displayAwards.map((award) => (
               <Badge key={award.awardTitle}>{award.awardTitle}</Badge>
             ))}
           </div>
