@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 8rem;
+}
+
+.title {
+  font-family: var(--font-roboto-slab);
+  font-size: 6rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.lead {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.card-body {
+  font-size: 1.6rem;
+  color: #444;
+  margin-bottom: 3rem;
+}
+
+.button {
+  display: inline-block;
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: var(--accent);
+  color: #444;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  padding: 1.6rem 0;
+  position: relative;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.button::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.6rem;
+  transform: translateX(0);
+  transition: transform 160ms ease;
+  color: inherit;
+}
+
+.button:hover {
+  background: color-mix(in srgb, var(--accent), #000 10%);
+}
+
+.button:hover::after {
+  transform: translateX(6px);
+}
+
+.link {
+  display: inline-block;
+  color: #0070f3;
+  text-decoration: underline;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 2rem 4rem;
+  }
+
+  .title {
+    font-size: 4rem;
+  }
+
+  .lead {
+    font-size: 1.4rem;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+  }
+
+  .card-body {
+    font-size: 1.4rem;
+  }
+
+  .button {
+    font-size: 1.4rem;
+    padding: 1.2rem 0;
+  }
+}
