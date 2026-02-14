@@ -3,7 +3,7 @@ import Hero from "@/components/ui/Hero";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
-import { getAllWorkIds, getWork } from "@/lib/microcms";
+import { getWork } from "@/lib/microcms";
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,15 +23,6 @@ interface WorkDetailsSearchParams {
 interface WorkDetailsPageProps {
   params: Promise<WorkDetailsParams>;
   searchParams: Promise<WorkDetailsSearchParams>;
-}
-
-export const revalidate = 60; // ページデータの再検証間隔
-
-export async function generateStaticParams() {
-  const allWorkIds = await getAllWorkIds(); // getAllWorkIdsを使用
-  return allWorkIds.map((content) => ({
-    workId: content.id,
-  }));
 }
 
 export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
