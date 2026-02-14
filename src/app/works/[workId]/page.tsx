@@ -3,11 +3,12 @@ import Hero from "@/components/ui/Hero";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import Paper from "@/components/ui/Paper";
 import Tag from "@/components/ui/Tag";
-import { getAllWorkIds, getWork } from "@/lib/microcms";
+import { getWork } from "@/lib/microcms";
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
+import awardFormatter from "@/lib/awardsFormatter";
 
 interface WorkDetailsParams {
   workId: string;
@@ -22,15 +23,6 @@ interface WorkDetailsSearchParams {
 interface WorkDetailsPageProps {
   params: Promise<WorkDetailsParams>;
   searchParams: Promise<WorkDetailsSearchParams>;
-}
-
-export const revalidate = 60; // ページデータの再検証間隔
-
-export async function generateStaticParams() {
-  const allWorkIds = await getAllWorkIds(); // getAllWorkIdsを使用
-  return allWorkIds.map((content) => ({
-    workId: content.id,
-  }));
 }
 
 export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
@@ -124,6 +116,19 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
             </Paper>
           )}
         </div>
+        {workData.awards && workData.awards.length > 0 && (
+          <Paper>
+            <div className={styles["awards-row"]}>
+              <p className={styles["awards-label"]}>受賞歴</p>
+              <div className={styles.awards}>
+                {awardFormatter(workData.awards)
+                  .map((award) => `${award.eventTitle} - ${award.awardTitle}`)
+                  .join("、")}
+              </div>
+            </div>
+          </Paper>
+        )}
+
         {workData.details && workData.details.length > 0 && (
           <div className={styles.details}>
             {workData.details.map((detail, index) => (

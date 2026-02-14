@@ -3,6 +3,7 @@ import EventCard from "@/components/EventCard";
 import WorkCard from "@/components/WorkCard";
 import type { Event, Work } from "@/lib/microcms";
 import dateFormatter from "@/lib/dateFormater";
+import awardFormatter from "@/lib/awardsFormatter";
 
 interface EventCardListProps {
   contents: Event[];
@@ -38,6 +39,7 @@ const CardList = ({ contents, isEvent, ...props }: CardListProps) => {
                 id={work.id}
                 title={work.title}
                 thumbnailUrl={work.thumbnail?.url || "/dummy.jpg"}
+                awards={awardFormatter(work.awards)}
                 tags={
                   work.tags?.map((tag) => tag.name).filter(Boolean) as
                     | string[]
