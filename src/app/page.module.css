@@ -17,18 +17,32 @@
   font-size: 1.8rem;
   line-height: 1.8;
   margin-bottom: 5rem;
+  text-align: center;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 70px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .card-title {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .card-body {
@@ -52,6 +66,7 @@
   transition:
     background 160ms ease,
     transform 160ms ease;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button::after {
@@ -73,7 +88,6 @@
 
 .link {
   display: inline-block;
-  color: #0070f3;
   text-decoration: underline;
   font-size: 1.6rem;
   font-weight: 600;

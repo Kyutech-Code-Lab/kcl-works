@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import PageTitle from "@/components/ui/PageTitle";
-import styles from "./page.module.css";
+import CalenderIcon from "@/components/CalenderIcon";
+import ProgramCodeIcon from "@/components/ProgramCodeIcon";
 import Paper from "@/components/ui/Paper";
+import Link from "next/link";
+import styles from "./page.module.css";
 
 export default function Home() {
   return (
@@ -28,6 +28,7 @@ export default function Home() {
 
       <div className={styles.grid}>
         <Paper>
+          <CalenderIcon />
           <h3 className={styles["card-title"]}>Events</h3>
           <p className={styles["card-body"]}>
             KCLで行われたハッカソンや企業連携イベントを紹介します。
@@ -38,6 +39,7 @@ export default function Home() {
         </Paper>
 
         <Paper>
+          <ProgramCodeIcon />
           <h3 className={styles["card-title"]}>Works</h3>
           <p className={styles["card-body"]}>
             学生が制作したアプリやプロダクトを掲載しています。
