@@ -23,17 +23,28 @@
       }
     }
 
+    .awards-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
     .awards-label {
       font-size: 1.6rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
+      white-space: nowrap;
+      min-width: 5.2rem;
     }
 
     .awards {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-direction: row;
+      gap: 0.5rem;
       font-size: 1.6rem;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
     .links {

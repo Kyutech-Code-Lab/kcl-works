@@ -127,14 +127,13 @@ export default async function WorkDetailsPage(props: WorkDetailsPageProps) {
         </div>
         {workData.awards && workData.awards.length > 0 && (
           <Paper>
-            <p className={styles["awards-label"]}>受賞</p>
-            <div className={styles.awards}>
-              {awardFormatter(workData.awards).map((award) => (
-                <div key={award.awardTitle} className={styles.award}>
-                  <span>・ {award.eventTitle}</span>
-                  <span>- {award.awardTitle}</span>
-                </div>
-              ))}
+            <div className={styles["awards-row"]}>
+              <p className={styles["awards-label"]}>受賞歴</p>
+              <div className={styles.awards}>
+                {awardFormatter(workData.awards)
+                  .map((award) => `${award.eventTitle} - ${award.awardTitle}`)
+                  .join("、")}
+              </div>
             </div>
           </Paper>
         )}
