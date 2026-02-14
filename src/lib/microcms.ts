@@ -53,9 +53,15 @@ export const client = createClient({
 });
 
 export const getEvents = async (queries?: MicroCMSQueries) => {
+  const minDate = "2010-01-01";
+  const minDateFilter = `date[greater_than]${minDate}`;
+  const combinedFilters = queries?.filters
+    ? `${queries.filters} and ${minDateFilter}`
+    : minDateFilter;
+
   return client.getList<Event>({
     endpoint: "events",
-    queries,
+    queries: { ...queries, filters: combinedFilters },
   });
 };
 
@@ -92,10 +98,22 @@ export const getAllEventIds = async (
   let offset = 0;
   const limit = 100; // microCMSの最大取得件数
 
+  const minDate = "2010-01-01";
+  const minDateFilter = `date[greater_than_or_equal]${minDate}`;
+  const baseFilters = queries?.filters
+    ? `${queries.filters} and ${minDateFilter}`
+    : minDateFilter;
+
   while (true) {
     const data = await client.getList<Event>({
       endpoint: "events",
-      queries: { ...queries, fields: "id", limit, offset },
+      queries: {
+        ...queries,
+        fields: "id",
+        limit,
+        offset,
+        filters: baseFilters,
+      },
     });
 
     allContentIds = [
