@@ -3,7 +3,7 @@ import CardList from "@/components/CardList";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import PageTitle from "@/components/ui/PageTitle";
 import Paper from "@/components/ui/Paper";
-import { getAllEventIds, getEvent, getWorks } from "@/lib/microcms";
+import { getEvent, getWorks } from "@/lib/microcms";
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
@@ -12,17 +12,6 @@ type EventDetailsPageProps = {
   params: Promise<{ eventId: string }>;
   searchParams: Promise<{ draftKey?: string }>;
 };
-
-export const revalidate = 60;
-
-// 静的パスを生成
-export async function generateStaticParams() {
-  // getAllEventIdsを使用して全てのイベントIDを取得
-  const allEventIds = await getAllEventIds();
-  return allEventIds.map((content) => ({
-    eventId: content.id,
-  }));
-}
 
 // propsを直接受け取り、paramsをawaitで解決する
 export default async function EventDetailsPage(props: EventDetailsPageProps) {

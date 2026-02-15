@@ -14,6 +14,24 @@
   }
 }
 
+.link {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.badges {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 14px;
+  align-items: flex-start;
+  z-index: 2;
+  white-space: nowrap;
+}
+
 .info {
   display: flex;
   flex-direction: column;
