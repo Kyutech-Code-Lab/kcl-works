@@ -58,4 +58,11 @@
   white-space: normal;
   word-break: break-word;
   line-height: 1.1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
