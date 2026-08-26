@@ -38,6 +38,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
   z-index: 1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -58,11 +59,10 @@
   white-space: normal;
   word-break: break-word;
   line-height: 1.1;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  text-overflow: ellipsis;
 }
