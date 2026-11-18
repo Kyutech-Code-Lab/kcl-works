@@ -26,40 +26,74 @@
   flex-wrap: wrap;
   max-width: calc(100% - 16px);
   margin-top: 32px;
-  color: #242424;
+  color: #244255;
   font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .pagination :is(a, button, .current) {
   display: inline-grid;
-  min-width: 32px;
+  min-width: 44px;
   min-height: 44px;
   place-items: center;
   padding: 0 6px;
-  border: 1px solid #747474;
-  border-radius: 6px;
-  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
   color: inherit;
   font: inherit;
 }
 
+.pagination :is(.previous, .next) {
+  border-color: #b7cfdf;
+  background: #f7fbff;
+}
+
+.pagination :is(.previous, .next)::before {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  content: "";
+}
+
+.previous::before {
+  transform: translateX(1px) rotate(135deg);
+}
+
+.next::before {
+  transform: translateX(-1px) rotate(-45deg);
+}
+
 .pagination a:hover {
-  background: var(--background);
+  border-color: #b7cfdf;
+  background: #eef7fd;
 }
 
 .pagination a:focus-visible {
-  outline: 2px solid #242424;
+  outline: 2px solid #244255;
   outline-offset: 2px;
 }
 
 .pagination .current {
-  border-color: #242424;
-  background: var(--accent);
+  background: #244255;
+  color: #fff;
   font-weight: 700;
 }
 
 .pagination button:disabled {
-  border-color: transparent;
-  background: transparent;
-  color: #555;
+  border-color: #c7dce9;
+  background: #e4f0f8;
+  color: #627c8d;
+}
+
+@media (max-width: 420px) {
+  .pagination,
+  .pageGroup {
+    gap: 3px;
+  }
+
+  .pagination .pageGroup :is(a, .current) {
+    min-width: 32px;
+  }
 }
