@@ -1,9 +1,9 @@
-import { createClient } from "microcms-js-sdk";
 import type {
   MicroCMSImage,
   MicroCMSListContent,
   MicroCMSQueries,
 } from "microcms-js-sdk";
+import { createClient } from "microcms-js-sdk";
 
 export interface Tag extends MicroCMSListContent {
   name: string;
@@ -82,6 +82,21 @@ export const getWorks = async (queries?: MicroCMSQueries) => {
     queries,
   });
 };
+
+export const worksPageSize = 12;
+
+export function getWorksPage(page: number, eventId?: string) {
+  const offset = (page - 1) * worksPageSize;
+
+  return getWorks({
+    limit: worksPageSize,
+    // 巨大なページ番号では先頭のレスポンスから総件数を取得する。
+    offset: offset <= 2_147_483_647 ? offset : 0,
+    orders: "-publishedAt,-createdAt",
+    fields: "id,title,thumbnail,awards,tags",
+    filters: eventId ? `event[contains]${eventId}` : undefined,
+  });
+}
 
 export const getWork = async (contentId: string, queries?: MicroCMSQueries) => {
   return client.get<Work>({

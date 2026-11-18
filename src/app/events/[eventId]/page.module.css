@@ -21,3 +21,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+.worksHeading {
+  margin-bottom: 24px;
+  color: #333;
+  font-size: 2.4rem;
+}
