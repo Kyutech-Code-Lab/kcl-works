@@ -1,16 +1,16 @@
+import { unstable_noStore as noStore } from "next/cache";
+import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CardList from "@/components/CardList";
+import PaginatedWorks from "@/components/PaginatedWorks";
 import MarkdownContent from "@/components/ui/MarkdownContent";
 import PageTitle from "@/components/ui/PageTitle";
 import Paper from "@/components/ui/Paper";
-import { getEvent, getWorks } from "@/lib/microcms";
-import { unstable_noStore as noStore } from "next/cache";
-import { notFound } from "next/navigation";
+import { getEvent } from "@/lib/microcms";
 import styles from "./page.module.css";
 
 type EventDetailsPageProps = {
   params: Promise<{ eventId: string }>;
-  searchParams: Promise<{ draftKey?: string }>;
+  searchParams: Promise<{ draftKey?: string; page?: string | string[] }>;
 };
 
 // propsを直接受け取り、paramsをawaitで解決する
@@ -58,10 +58,6 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
     notFound();
   }
 
-  const workData = await getWorks({
-    filters: `event[contains]${params.eventId}`,
-  });
-
   return (
     <div className={styles.container}>
       <Breadcrumbs
@@ -78,11 +74,13 @@ export default async function EventDetailsPage(props: EventDetailsPageProps) {
           <MarkdownContent content={eventData.description} />
         </Paper>
       </div>
-      <CardList
-        contents={workData.contents}
-        isEvent={false}
+      <PaginatedWorks
+        heading={<h2 className={styles.worksHeading}>作品一覧</h2>}
+        pathname={`/events/${encodeURIComponent(params.eventId)}`}
+        requestedPage={searchParams.page}
         eventId={params.eventId}
         eventTitle={eventData.title}
+        draftKey={draftKey}
       />
     </div>
   );

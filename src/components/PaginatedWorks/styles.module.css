@@ -1,0 +1,65 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  scroll-margin-top: 112px;
+}
+
+.message {
+  width: 80%;
+  padding: 16px 0;
+  color: #333;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.pagination,
+.pageGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pagination {
+  flex-wrap: wrap;
+  max-width: calc(100% - 16px);
+  margin-top: 32px;
+  color: #242424;
+  font-size: 1.4rem;
+}
+
+.pagination :is(a, button, .current) {
+  display: inline-grid;
+  min-width: 32px;
+  min-height: 44px;
+  place-items: center;
+  padding: 0 6px;
+  border: 1px solid #747474;
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+
+.pagination a:hover {
+  background: var(--background);
+}
+
+.pagination a:focus-visible {
+  outline: 2px solid #242424;
+  outline-offset: 2px;
+}
+
+.pagination .current {
+  border-color: #242424;
+  background: var(--accent);
+  font-weight: 700;
+}
+
+.pagination button:disabled {
+  border-color: transparent;
+  background: transparent;
+  color: #555;
+}
