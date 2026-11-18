@@ -95,13 +95,19 @@ function Pagination({
   return (
     <nav className={styles.pagination} aria-label="作品一覧のページ送り">
       {currentPage === 1 ? (
-        <button type="button" disabled>
-          前へ
-        </button>
+        <button
+          type="button"
+          className={styles.previous}
+          aria-label="前のページ"
+          disabled
+        />
       ) : (
-        <Link href={pageHref(currentPage - 1)} prefetch={false}>
-          前へ
-        </Link>
+        <Link
+          className={styles.previous}
+          href={pageHref(currentPage - 1)}
+          prefetch={false}
+          aria-label="前のページ"
+        />
       )}
       {pages.map((page, index) => (
         <span className={styles.pageGroup} key={page}>
@@ -124,13 +130,19 @@ function Pagination({
         </span>
       ))}
       {currentPage === totalPages ? (
-        <button type="button" disabled>
-          次へ
-        </button>
+        <button
+          type="button"
+          className={styles.next}
+          aria-label="次のページ"
+          disabled
+        />
       ) : (
-        <Link href={pageHref(currentPage + 1)} prefetch={false}>
-          次へ
-        </Link>
+        <Link
+          className={styles.next}
+          href={pageHref(currentPage + 1)}
+          prefetch={false}
+          aria-label="次のページ"
+        />
       )}
     </nav>
   );
